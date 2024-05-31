@@ -2,6 +2,7 @@
 import {onMounted, ref} from "vue";
 import customWebSocket from "../utils/websocket.js";
 import request from '../utils/request.js'
+import {NImage} from 'naive-ui'
 // const serverAddress = '192.168.8.43:9100'
 const serverAddress = '150.158.148.22'
 const altPicAddress = '/src/assets/trama.jpg'
@@ -11,8 +12,6 @@ const {createWebsocket, connectionStatus} = customWebSocket({
   onMessage: (data) => {
     if (data && data !== 'The heartbeat packets') {
       url.value = `http://${serverAddress}/esop/${data}`
-    } else {
-      url.value = altPicAddress
     }
   },
 })
@@ -33,10 +32,18 @@ onMounted(() => {
 </script>
 
 <template>
-  <div>
+  <div class="wrapper">
     <div :class="{'online': connectionStatus === true, 'offline': connectionStatus === false}"></div>
-    <img :src="url"
-        alt=""/>
+<!--    <img :src="url"-->
+<!--        alt=""/>-->
+    <NImage
+      preview-disabled
+      :src="url"
+      object-fit="cover"
+      width="1366"
+    >
+
+    </NImage>
   </div>
 </template>
 
@@ -66,5 +73,10 @@ img {
   width: 100%;
   height: 10px;
   background-color: red;
+}
+
+.wrapper {
+  display: flex;
+  width: 100%;
 }
 </style>
