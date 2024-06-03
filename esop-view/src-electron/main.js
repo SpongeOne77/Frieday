@@ -10,12 +10,12 @@ process.env['ELECTRON_DISABLE_SECURITY_WARNINGS'] = 'true'
 // 创建浏览器窗口时，调用这个函数。
 const createWindow = () => {
   const win = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: 1920,
+    height: 1080,
     webPreferences: {
       webSecurity: false
     },
-    icon: './public/anbong_logo.ico'
+    icon: './public/favicon.ico'
   })
   
   // win.loadURL('http://localhost:3000')

@@ -28,7 +28,7 @@
       "shortcutName": "EsopView"
     },
     "win": {
-      "icon": "/public/anbang_logo.ico",
+      "icon": "/public/favicon.ico",
       "artifactName": "${productName}-v${version}-${platform}-setup.${ext}",
       "target": [
         {
@@ -37,11 +37,11 @@
       ]
     },
     "mac": {
-      "icon": "/public/anbang_logo.ico",
+      "icon": "/public/favicon.ico",
       "artifactName": "${productName}-v${version}-${platform}-setup.${ext}"
     },
     "linux": {
-      "icon": "/public/anbang_logo.ico",
+      "icon": "/public/favicon.ico",
       "artifactName": "${productName}-v${version}-${platform}-setup.${ext}"
     }
   },
