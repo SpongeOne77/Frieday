@@ -304,7 +304,8 @@ export const generatedRoutes: GeneratedRoute[] = [
         component: 'view.manufacture_station',
         meta: {
           title: 'manufacture_station',
-          i18nKey: 'route.manufacture_station'
+          i18nKey: 'route.manufacture_station',
+          hideInMenu: true
         }
       }
     ]
