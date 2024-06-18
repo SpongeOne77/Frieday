@@ -2,17 +2,21 @@
 import {onMounted, ref} from "vue";
 import customWebSocket from "../utils/websocket.js";
 import request from '../utils/request.js'
+import {NCarousel} from 'naive-ui'
 // const serverAddress = '192.168.8.43:9100'
 const serverAddress = '150.158.148.22'
-const altPicAddress = '/src/assets/trama.jpg'
-const url = ref(altPicAddress);
+const altPicAddress = ['/src/assets/trama.jpg']
+const urls = ref(altPicAddress);
 const {createWebsocket, connectionStatus} = customWebSocket({
   url: `ws://${serverAddress}/channel/echo`,
   onMessage: (data) => {
     if (data && data !== 'The heartbeat packets') {
-      url.value = `http://${serverAddress}/esop/${data}`
-    } else {
-      url.value = altPicAddress
+      console.log(JSON.parse(data))
+      let pics = [];
+      JSON.parse(data).forEach((item) => {
+        pics.push(`http://${serverAddress}/esop/${item}`);
+      })
+      urls.value = pics
     }
   },
 })
@@ -35,8 +39,10 @@ onMounted(() => {
 <template>
   <div>
     <div :class="{'online': connectionStatus === true, 'offline': connectionStatus === false}"></div>
-    <img :src="url"
-        alt=""/>
+    <n-carousel autoplay>
+      <img v-for="item in urls" :key="item" :src="item"  alt=""/>
+    </n-carousel>
+
   </div>
 </template>
 
