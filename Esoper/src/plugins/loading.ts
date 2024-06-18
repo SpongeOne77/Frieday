@@ -2,7 +2,7 @@
 import { getRgb } from '@sa/color';
 import { $t } from '@/locales';
 import { localStg } from '@/utils/storage';
-import systemLogo from '@/assets/svg-icon/logo.svg?raw';
+import systemLogo from '@/assets/svg-icon/anbong_logo.svg?raw';
 
 export function setupLoading() {
   const themeColor = localStg.get('themeColor') || '#646cff';
