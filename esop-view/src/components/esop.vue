@@ -4,7 +4,8 @@ import customWebSocket from "../utils/websocket.js";
 import request from '../utils/request.js'
 import {NCarousel} from 'naive-ui'
 // const serverAddress = '192.168.8.43:9100'
-const serverAddress = '150.158.148.22'
+// const serverAddress = '150.158.148.22'
+const serverAddress = '192.168.0.38'
 const altPicAddress = ['/src/assets/trama.jpg']
 const urls = ref(altPicAddress);
 const {createWebsocket, connectionStatus} = customWebSocket({
