@@ -2,18 +2,22 @@
 import {onMounted, ref} from "vue";
 import customWebSocket from "../utils/websocket.js";
 import request from '../utils/request.js'
-import {NImage} from 'naive-ui'
-import trama from '/src/assets/trama.jpg'
+import {NCarousel} from 'naive-ui'
 // const serverAddress = '192.168.8.43:9100'
 // const serverAddress = '150.158.148.22'
-const serverAddress = '192.168.0.132'
-const altPicAddress = trama;
-const url = ref(altPicAddress);
+const serverAddress = '192.168.0.38'
+const altPicAddress = ['/src/assets/trama.jpg']
+const urls = ref(altPicAddress);
 const {createWebsocket, connectionStatus} = customWebSocket({
   url: `ws://${serverAddress}/channel/echo`,
   onMessage: (data) => {
     if (data && data !== 'The heartbeat packets') {
-      url.value = `http://${serverAddress}/esop/${data}`
+      console.log(JSON.parse(data))
+      let pics = [];
+      JSON.parse(data).forEach((item) => {
+        pics.push(`http://${serverAddress}/esop/${item}`);
+      })
+      urls.value = pics
     }
   },
 })
@@ -34,18 +38,12 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="wrapper">
+  <div>
     <div :class="{'online': connectionStatus === true, 'offline': connectionStatus === false}"></div>
-<!--    <img :src="url"-->
-<!--        alt=""/>-->
-    <NImage
-      preview-disabled
-      :src="url"
-      object-fit="cover"
-      width="1366"
-    >
+    <n-carousel autoplay>
+      <img v-for="item in urls" :key="item" :src="item"  alt=""/>
+    </n-carousel>
 
-    </NImage>
   </div>
 </template>
 
@@ -75,10 +73,5 @@ img {
   width: 100%;
   height: 10px;
   background-color: red;
-}
-
-.wrapper {
-  display: flex;
-  width: 100%;
 }
 </style>

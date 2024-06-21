@@ -216,7 +216,7 @@ export const generatedRoutes: GeneratedRoute[] = [
       icon: 'carbon:cloud-service-management',
       order: 9,
       roles: ['R_ADMIN'],
-      hideInMenu: true
+      hideInMenu: false
     },
     children: [
       {
