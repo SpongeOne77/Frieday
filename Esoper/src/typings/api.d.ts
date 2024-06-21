@@ -125,7 +125,7 @@ declare namespace Api {
       userName: string;
       /** user gender */
       userGender: UserGender | null;
-      /** user nick name */
+      /** user nickname */
       nickName: string;
       /** user phone */
       userPhone: string;
@@ -256,5 +256,22 @@ declare namespace Api {
     type productSearchParams = CommonType.RecordNullable<
       Pick<Api.Manufacture.Product, 'productName' | 'productCode'> & CommonSearchParams
     >;
+
+    /** types for station */
+    type Station = Common.CommonRecord<{
+      id: string;
+      stationName: string;
+      stationCode: string;
+      lineCode: string;
+      address: string;
+      onlineStatus: boolean;
+    }>;
+
+    /** station search param */
+    type stationSearchParams = CommonType.RecordNullable<
+      Pick<Api.Manufacture.Station, 'stationName' | 'stationCode' | 'address' | 'onlineStatus'> & CommonSearchParams
+    >;
+
+    type StationList = Common.PaginatingQueryRecord<Station>;
   }
 }

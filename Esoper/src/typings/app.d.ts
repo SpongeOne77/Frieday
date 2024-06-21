@@ -600,6 +600,7 @@ declare namespace App {
         };
         manufacture: {
           line: {
+            id: string;
             title: string;
             lineName: string;
             lineCode: string;
@@ -614,6 +615,7 @@ declare namespace App {
             };
           };
           product: {
+            id: string;
             title: string;
             productName: string;
             productCode: string;
@@ -624,6 +626,21 @@ declare namespace App {
             form: {
               productName: string;
               productCode: string;
+            };
+          };
+          station: {
+            id: string;
+            title: string;
+            stationName: string;
+            stationCode: string;
+            address: string;
+            addStation: string;
+            editStation: string;
+            lineCode: string;
+            onlineStatus: string;
+            form: {
+              stationName: string;
+              stationCode: string;
             };
           };
         };

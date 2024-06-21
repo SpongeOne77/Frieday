@@ -3,7 +3,6 @@ import { NButton, NPopconfirm, NTag } from 'naive-ui';
 import { fetchGetUserList } from '@/service/api';
 import { $t } from '@/locales';
 import { useAppStore } from '@/store/modules/app';
-import { enableStatusRecord, userGenderRecord } from '@/constants/business';
 import { useTable, useTableOperate } from '@/hooks/common/table';
 import UserOperateDrawer from './modules/station-operate-drawer.vue';
 import UserSearch from './modules/station-search.vue';
@@ -41,19 +40,19 @@ const { columns, columnChecks, data, getData, loading, mobilePagination, searchP
       key: 'stationName',
       title: $t('page.manufacture.station.stationName'),
       align: 'center',
-      minWidth: 100,
+      minWidth: 100
     },
     {
       key: 'stationCode',
       title: $t('page.manufacture.station.stationCode'),
       align: 'center',
-      width: 100,
+      width: 100
     },
     {
       key: 'lineCode',
       title: $t('page.manufacture.station.lineCode'),
       align: 'center',
-      width: 100,
+      width: 100
     },
     {
       key: 'operate',
@@ -61,21 +60,21 @@ const { columns, columnChecks, data, getData, loading, mobilePagination, searchP
       align: 'center',
       width: 130,
       render: row => (
-          <div class="flex-center gap-8px">
-            <NButton type="primary" ghost size="small" onClick={() => edit(row.id)}>
-              {$t('common.edit')}
-            </NButton>
-            <NPopconfirm onPositiveClick={() => handleDelete(row.id)}>
-              {{
-                default: () => $t('common.confirmDelete'),
-                trigger: () => (
-                    <NButton type="error" ghost size="small">
-                      {$t('common.delete')}
-                    </NButton>
-                )
-              }}
-            </NPopconfirm>
-          </div>
+        <div class="flex-center gap-8px">
+          <NButton type="primary" ghost size="small" onClick={() => edit(row.id)}>
+            {$t('common.edit')}
+          </NButton>
+          <NPopconfirm onPositiveClick={() => handleDelete(row.id)}>
+            {{
+              default: () => $t('common.confirmDelete'),
+              trigger: () => (
+                <NButton type="error" ghost size="small">
+                  {$t('common.delete')}
+                </NButton>
+              )
+            }}
+          </NPopconfirm>
+        </div>
       )
     }
   ]
@@ -92,6 +91,13 @@ const {
   onDeleted
   // closeDrawer
 } = useTableOperate(data, getData);
+
+const mockData: StationList = [
+  {
+    id: 1,
+    stationCode: ''
+  }
+]
 
 async function handleBatchDelete() {
   // request

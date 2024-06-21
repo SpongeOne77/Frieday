@@ -311,6 +311,7 @@ const local: App.I18n.Schema = {
     },
     manufacture: {
       line: {
+        id: 'id',
         title: '产线列表',
         lineName: '产线名称',
         lineCode: '产线编号',
@@ -325,6 +326,7 @@ const local: App.I18n.Schema = {
         }
       },
       product: {
+        id: 'id',
         title: '产品列表',
         productCode: '产品编号',
         productName: '产品名称',
@@ -335,6 +337,21 @@ const local: App.I18n.Schema = {
         form: {
           productCode: '请输入产品编号',
           productName: '请输入产品名称',
+        }
+      },
+      station: {
+        id: 'id',
+        title: '工站列表',
+        stationCode: '工站编号',
+        stationName: '工站名称',
+        lineCode: '所属产线',
+        address: '对应IP地址',
+        onlineStatus: '在线状态',
+        addStation: '新增工站',
+        editStation: '编辑工站',
+        form: {
+          stationCode: '请输入工站编号',
+          stationName: '请输入工站名称',
         }
       }
     },

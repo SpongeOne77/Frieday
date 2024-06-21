@@ -305,7 +305,7 @@ export const generatedRoutes: GeneratedRoute[] = [
         meta: {
           title: 'manufacture_station',
           i18nKey: 'route.manufacture_station',
-          hideInMenu: true
+          hideInMenu: false
         }
       }
     ]
