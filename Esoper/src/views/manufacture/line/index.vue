@@ -107,7 +107,9 @@ function edit(id: number) {
 }
 
 function onPublish(id: string) {
-  publishProduct(id);
+  publishProduct(id).then(() => {
+    window.$message?.success($t('common.updateSuccess'));
+  });
 }
 
 const onSubmit = item => {

@@ -101,12 +101,10 @@ export const useAuthStore = defineStore(SetupStoreId.Auth, () => {
     const { data: info, error } = {
       data: {
         userId: '0',
-        userName: 'Soybean',
+        userName: 'Trama',
         roles: ['R_SUPER'],
         buttons: ['B_CODE1', 'B_CODE2', 'B_CODE3']
-      },
-      code: '0000',
-      msg: '请求成功'
+      }
     };
 
     if (!error) {

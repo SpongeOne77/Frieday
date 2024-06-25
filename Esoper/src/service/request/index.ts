@@ -1,5 +1,5 @@
 import type { AxiosResponse } from 'axios';
-import { BACKEND_ERROR_CODE, createFlatRequest, createRequest } from '@sa/axios';
+import { BACKEND_ERROR_CODE, createFlatRequest } from '@sa/axios';
 import axios from 'axios';
 import { useAuthStore } from '@/store/modules/auth';
 import { $t } from '@/locales';
@@ -128,7 +128,7 @@ export const request = createFlatRequest<App.Service.Response, RequestInstanceSt
   }
 );
 
-export const demoRequest = createRequest<App.Service.DemoResponse>(
+export const demoRequest = createFlatRequest<App.Service.DemoResponse>(
   {
     baseURL: otherBaseURL.demo
   },
@@ -153,7 +153,7 @@ export const demoRequest = createRequest<App.Service.DemoResponse>(
       // for example: the token is expired, refresh token and retry request
     },
     transformBackendResponse(response) {
-      return response.data;
+      return response.data.data;
     },
     onError(error) {
       // when the request is fail, you can show error message
@@ -175,7 +175,7 @@ export const uploadRequest = (params: { url: string; formData: FormData; uploadP
   const { url, formData, uploadProgressCallback } = params;
   return axios.post(`${otherBaseURL.demo}${url}`, formData, {
     onUploadProgress(progressEvent) {
-      const percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
+      const percentCompleted = Math.round((progressEvent.loaded * 100) / (progressEvent?.total || 0));
       uploadProgressCallback(percentCompleted);
     },
     headers: {

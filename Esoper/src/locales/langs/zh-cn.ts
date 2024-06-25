@@ -37,6 +37,7 @@ const local: App.I18n.Schema = {
     trigger: '触发',
     update: '更新',
     updateSuccess: '更新成功',
+    publishSuccess: '发布成功',
     userCenter: '个人中心',
     yesOrNo: {
       yes: '是',
@@ -344,14 +345,16 @@ const local: App.I18n.Schema = {
         title: '工站列表',
         stationCode: '工站编号',
         stationName: '工站名称',
-        lineCode: '所属产线',
-        address: '对应IP地址',
+        stationType: '工站类型',
+        stationIp: '对应IP地址',
         onlineStatus: '在线状态',
         addStation: '新增工站',
         editStation: '编辑工站',
         form: {
           stationCode: '请输入工站编号',
           stationName: '请输入工站名称',
+          stationType: '请输入工站类型',
+          stationIp: '请输入工站对应IP'
         }
       }
     },

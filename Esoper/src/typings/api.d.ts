@@ -237,7 +237,7 @@ declare namespace Api {
 
     /** line search params */
     type lineSearchParams = CommonType.RecordNullable<
-      Pick<Api.Manufacture.Line, 'lineName' | 'lineCode'> & CommonSearchParams
+      Pick<Api.Manufacture.Line, 'lineName' | 'lineCode' | 'productId' | 'stations'> & CommonSearchParams
     >;
     type LineList = Common.PaginatingQueryRecord<Line>;
 
@@ -262,14 +262,14 @@ declare namespace Api {
       id: string;
       stationName: string;
       stationCode: string;
-      lineCode: string;
-      address: string;
+      stationIp: string;
       onlineStatus: boolean;
+      stationType: string;
     }>;
 
     /** station search param */
     type stationSearchParams = CommonType.RecordNullable<
-      Pick<Api.Manufacture.Station, 'stationName' | 'stationCode' | 'address' | 'onlineStatus'> & CommonSearchParams
+      Pick<Api.Manufacture.Station, 'stationName' | 'stationCode' | 'stationIp' | 'onlineStatus' | 'stationType'> & CommonSearchParams
     >;
 
     type StationList = Common.PaginatingQueryRecord<Station>;

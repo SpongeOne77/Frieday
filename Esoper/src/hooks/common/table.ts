@@ -5,29 +5,13 @@ import { cloneDeep } from 'lodash-es';
 import { useBoolean, useHookTable } from '@sa/hooks';
 import { useAppStore } from '@/store/modules/app';
 import { $t } from '@/locales';
-import {MappedType} from "~/packages/axios";
+// import type { MappedType } from '~/packages/axios';
 
 type TableData = NaiveUI.TableData;
 type GetTableData<A extends NaiveUI.TableApiFn> = NaiveUI.GetTableData<A>;
 type TableColumn<T> = NaiveUI.TableColumn<T>;
 
-export function useTable<A extends NaiveUI.TableApiFn>(config: {
-  immediate: boolean;
-  columns: () => ({ width: number; type: string; align: string } | {
-    width: number;
-    title: any;
-    align: string;
-    key: string
-  } | { minWidth: number; title: any; align: string; key: string } | {
-    width: number;
-    title: any;
-    align: string;
-    key: string
-  } | { width: number; title: any; align: string; render: (row) => JSX.Element; key: string })[];
-  showTotal: boolean;
-  apiFn: (params: Api.Manufacture.lineSearchParams) => Promise<MappedType<"json", Api.Manufacture.LineList>>;
-  apiParams: { lineCode: null; current: number; size: number; lineName: null }
-}) {
+export function useTable<A extends NaiveUI.TableApiFn>(config: NaiveUI.NaiveTableConfig<A>) {
   const scope = effectScope();
   const appStore = useAppStore();
 
@@ -257,6 +241,7 @@ export function useTableOperate<T extends TableData = TableData>(data: Ref<T[]>,
     onBatchDeleted,
     onDeleted
   };
+
 }
 
 function isTableColumnHasKey<T>(column: TableColumn<T>): column is NaiveUI.TableColumnWithKey<T> {

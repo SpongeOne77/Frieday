@@ -101,3 +101,42 @@ export function upload(params: { file: FormData; onProgressCallback: Function })
     uploadProgressCallback: params.onProgressCallback
   });
 }
+
+/** get station list */
+export function getStations(params: Api.Manufacture.stationSearchParams) {
+  return demoRequest<Api.Manufacture.StationList>({
+    url: '/station/selectStation',
+    method: 'post',
+    data: params
+  });
+}
+
+export function editStation(params: Api.Manufacture.Station) {
+  return demoRequest<Api.Manufacture.Station>({
+    url: '/station/updateStation',
+    method: 'post',
+    data: {
+      station: params
+    }
+  });
+}
+
+export function deleteStations(params: string[]) {
+  return demoRequest({
+    url: '/station/deleteStation',
+    method: 'post',
+    data: {
+      ids: params
+    }
+  });
+}
+
+export function addStation(params: Api.Manufacture.Line) {
+  return demoRequest<Api.Manufacture.Line>({
+    url: '/station/insertStation',
+    method: 'post',
+    data: {
+      station: params
+    }
+  });
+}

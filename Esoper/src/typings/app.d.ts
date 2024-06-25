@@ -287,6 +287,7 @@ declare namespace App {
         trigger: string;
         update: string;
         updateSuccess: string;
+        publishSuccess: string;
         userCenter: string;
         yesOrNo: {
           yes: string;
@@ -633,14 +634,16 @@ declare namespace App {
             title: string;
             stationName: string;
             stationCode: string;
-            address: string;
+            stationIp: string;
+            stationType: string;
+            onlineStatus: string;
             addStation: string;
             editStation: string;
-            lineCode: string;
-            onlineStatus: string;
             form: {
               stationName: string;
               stationCode: string;
+              stationType: string;
+              stationIp: string;
             };
           };
         };

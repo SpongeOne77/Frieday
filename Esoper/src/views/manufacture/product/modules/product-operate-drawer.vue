@@ -111,11 +111,6 @@ const handleClick = () => {
 const uploadRequest = ({
   file,
   data,
-  headers,
-  withCredentials,
-  action,
-  onFinish,
-  onError,
   onProgress
 }: UploadCustomRequestOptions) => {
   const formData = new FormData();

@@ -4,8 +4,8 @@ import customWebSocket from "../utils/websocket.js";
 import request from '../utils/request.js'
 import {NCarousel} from 'naive-ui'
 // const serverAddress = '192.168.8.43:9100'
-// const serverAddress = '150.158.148.22'
-const serverAddress = '192.168.0.38'
+const serverAddress = '150.158.148.22'
+// const serverAddress = '192.168.0.38'
 const altPicAddress = ['/src/assets/trama.jpg']
 const urls = ref(altPicAddress);
 const {createWebsocket, connectionStatus} = customWebSocket({
@@ -40,7 +40,7 @@ onMounted(() => {
 <template>
   <div>
     <div :class="{'online': connectionStatus === true, 'offline': connectionStatus === false}"></div>
-    <n-carousel autoplay>
+    <n-carousel autoplay show-arrow>
       <img v-for="item in urls" :key="item" :src="item"  alt=""/>
     </n-carousel>
 

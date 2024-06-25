@@ -1,7 +1,7 @@
 <script setup lang="tsx">
 import { NButton, NPopconfirm, NTag } from 'naive-ui';
 import {onMounted} from "vue";
-import { addProduct, deleteProduct, editLine, getProducts } from '@/service/api';
+import {addProduct, deleteProduct, editLine, editProduct, getProducts} from '@/service/api';
 import { $t } from '@/locales';
 import { useAppStore } from '@/store/modules/app';
 import { useTable, useTableOperate } from '@/hooks/common/table';
@@ -116,7 +116,7 @@ const onSubmit = item => {
     });
   }
   if (operateType.value === 'edit') {
-    editLine(item).then(() => {
+    editProduct(item).then(() => {
       getData();
     });
   }

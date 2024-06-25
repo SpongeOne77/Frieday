@@ -134,7 +134,7 @@ watch(visible, () => {
           ></NSelect>
         </NFormItem>
         <NFormItem :label="$t('page.manufacture.line.stations')" path="stations">
-          <NDynamicInput v-model:value="model.stations" show-sort-button placeholder="请输入 工站编号_IP" />
+          <NDynamicInput v-model:value="model.stations" show-sort-button placeholder="请输入工站编号" />
         </NFormItem>
       </NForm>
       <template #footer>
