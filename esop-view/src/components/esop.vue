@@ -43,7 +43,7 @@ onMounted(() => {
 <template>
   <div>
     <div :class="{'online': connectionStatus === true, 'offline': connectionStatus === false}"></div>
-    <n-carousel autoplay show-arrow interval="7000">
+    <n-carousel autoplay show-arrow :interval="7000">
       <img v-for="item in urls" :key="item" :src="item"  alt=""/>
     </n-carousel>
 
