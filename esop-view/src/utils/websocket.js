@@ -29,7 +29,8 @@ export default function customWebSocket({
       connectionStatus.value = false;
       heartbeat && clearInterval(heartbeat)
       setTimeout(() => {
-        createWebsocket()
+        console.log(`reconnecting.....from ${_localAddress}`)
+        createWebsocket(_localAddress)
       }, 10000)
     });
     ws.addEventListener('error', function (event) {

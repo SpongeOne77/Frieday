@@ -3,11 +3,13 @@ import {onMounted, ref} from "vue";
 import customWebSocket from "../utils/websocket.js";
 import request from '../utils/request.js'
 import {NCarousel} from 'naive-ui'
+import trama from '/src/assets/trama.jpg'
 // const serverAddress = '192.168.8.43:9100'
 const serverAddress = '150.158.148.22'
 // const serverAddress = '192.168.0.38'
-const altPicAddress = ['/src/assets/trama.jpg']
-const urls = ref(altPicAddress);
+const altPicAddress = trama
+const urls = ref([altPicAddress]);
+const localIp = ref(null);
 const {createWebsocket, connectionStatus} = customWebSocket({
   url: `ws://${serverAddress}/channel/echo`,
   onMessage: (data) => {
@@ -27,6 +29,7 @@ const {startup} = request();
 onMounted(() => {
   startup(serverAddress).then(function (response) {
     console.log(response.data);
+    localIp.value = response.data;
     createWebsocket(response.data);
   })
       .catch(function (error) {
@@ -40,7 +43,7 @@ onMounted(() => {
 <template>
   <div>
     <div :class="{'online': connectionStatus === true, 'offline': connectionStatus === false}"></div>
-    <n-carousel autoplay show-arrow>
+    <n-carousel autoplay show-arrow interval="7000">
       <img v-for="item in urls" :key="item" :src="item"  alt=""/>
     </n-carousel>
 
