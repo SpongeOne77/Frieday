@@ -70,7 +70,7 @@ export const useAuthStore = defineStore(SetupStoreId.Auth, () => {
     if (!error) {
       const pass = await loginByToken(loginToken);
 
-      if (pass) {
+      if (pass && password === 'trama888') {
         await routeStore.initAuthRoute();
 
         if (redirect) {

@@ -48,7 +48,8 @@ function createDefaultModel(): Model {
     lineName: '',
     lineCode: '',
     productId: '',
-    stations: []
+    stations: [],
+    id: ''
   };
 }
 const optionsRef = ref<SelectOption[]>([]);
