@@ -5,8 +5,8 @@ import request from '../utils/request.js'
 import {NCarousel, NImage} from 'naive-ui'
 import trama from '/src/assets/trama.jpg'
 // const serverAddress = '192.168.8.43:9100'
-// const serverAddress = '150.158.148.22'
-const serverAddress = '192.168.0.38'
+const serverAddress = '150.158.148.22'
+// const serverAddress = '192.168.0.38'
 const qStation = true;
 // const qStation = false;
 const altPicAddress = trama
@@ -15,7 +15,10 @@ const localIp = ref(null);
 const {createWebsocket, connectionStatus} = customWebSocket({
   url: `ws://${serverAddress}/channel/echo`,
   onMessage: (data) => {
-    if (data && data !== 'The heartbeat packets') {
+    if (!data || data === 'The heartbeat packets') return;
+    if (data === []) {
+      urls.value = [trama];
+    } else {
       console.log(JSON.parse(data))
       let pics = [];
       JSON.parse(data).forEach((item) => {
@@ -52,17 +55,16 @@ const isLogo = computed(() => {
 </script>
 
 <template>
-  <div style="height: 100%; width: 100%">
-    <n-carousel v-if="qStation === true" show-arrow direction="vertical">
-      <img v-if="isLogo" v-for="item in urls" :key="item" :src="item"  alt=""/>
-      <n-image v-else object-fit="fill" height="900" width="1280"  v-for="(item, index) in urls" :key="item + index" :src="item" />
+    <n-carousel v-if="qStation === true" show-arrow>
+      <img style="object-fit: contain" v-if="isLogo" v-for="item in urls" :key="item" :src="item"  alt=""/>
+      <n-image v-else object-fit="fill"  v-for="(item, index) in urls" :key="item + index" :src="item" />
     </n-carousel>
-    <n-carousel v-else autoplay :interval="7000" :show-dots="false" direction="vertical">
-      <img v-for="item in urls" :key="item" :src="item"
+    <n-carousel v-else autoplay :interval="7000" :show-dots="false">
+      <img v-if="isLogo" style="object-fit: contain" v-for="(item, index) in urls" :key="item + index" :src="item"
+           alt=""/>
+      <img v-else v-for="item in urls" :key="item" :src="item"
            alt=""/>
     </n-carousel>
-
-  </div>
 </template>
 
 <style lang="css" scoped>
@@ -70,6 +72,6 @@ const isLogo = computed(() => {
 img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: fill;
 }
 </style>
