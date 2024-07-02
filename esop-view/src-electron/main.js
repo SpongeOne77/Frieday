@@ -11,6 +11,7 @@ process.env['ELECTRON_DISABLE_SECURITY_WARNINGS'] = 'true'
 const createWindow = () => {
   const win = new BrowserWindow({
     fullscreen: true,
+    frame: false,
     webPreferences: {
       webSecurity: false
     },
