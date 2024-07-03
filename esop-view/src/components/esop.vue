@@ -5,8 +5,8 @@ import request from '../utils/request.js'
 import {NCarousel, NImage} from 'naive-ui'
 import trama from '/src/assets/trama.jpg'
 // const serverAddress = '192.168.8.43:9100'
-// const serverAddress = '150.158.148.22'
-const serverAddress = '192.168.0.38'
+const serverAddress = '150.158.148.22'
+// const serverAddress = '192.168.0.38'
 // const qStation = true;
 const qStation = false;
 const altPicAddress = trama
@@ -56,16 +56,17 @@ const isLogo = computed(() => {
 </script>
 
 <template>
-    <n-carousel v-if="qStation === true" show-arrow>
+  <n-carousel v-if="qStation === false" autoplay :show-dots="false">
+    <img v-if="isLogo" style="object-fit: contain" v-for="(item, index) in urls" :key="item + index" :src="item"
+         alt=""/>
+    <img v-else v-for="item in urls" :key="item" :src="item"
+         alt=""/>
+  </n-carousel>
+    <n-carousel v-if="qStation === true" :show-dots="false">
       <img style="object-fit: contain" v-if="isLogo" v-for="item in urls" :key="item" :src="item"  alt=""/>
       <n-image v-else object-fit="fill" width="1920" height="1000"  v-for="(item, index) in urls" :key="item + index" :src="item" />
     </n-carousel>
-    <n-carousel v-else autoplay :interval="7000" :show-dots="false">
-      <img v-if="isLogo" style="object-fit: contain" v-for="(item, index) in urls" :key="item + index" :src="item"
-           alt=""/>
-      <img v-else v-for="item in urls" :key="item" :src="item"
-           alt=""/>
-    </n-carousel>
+
 </template>
 
 <style lang="css" scoped>
