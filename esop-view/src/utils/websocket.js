@@ -13,7 +13,6 @@ export default function customWebSocket({
     const _localAddress = localAddress;
     const ws = new WebSocket(url);
     const heartbeat = setInterval(() => {
-      console.log("ready for heartbeat")
       ws.send("The heartbeat packets")
     }, 5000)
     
@@ -21,7 +20,6 @@ export default function customWebSocket({
       console.log("连接成功后的回调函数", _localAddress)
       connectionStatus.value = true;
       _localAddress && ws.send(_localAddress.toString())
-      
       onConnect && onConnect(event)
     });
     ws.addEventListener('close', function (event) {
@@ -32,13 +30,13 @@ export default function customWebSocket({
         console.log(`reconnecting.....from ${_localAddress}`)
         createWebsocket(_localAddress)
       }, 10000)
+      onClosed && onClosed(event)
     });
     ws.addEventListener('error', function (event) {
       console.log("连接报错时的回调函数")
       onError && onError(event)
     });
     ws.addEventListener('message', function (event) {
-      console.log(event.data)
       onMessage && onMessage(event.data)
       console.log("收到服务器数据后的回调函数")
     });
