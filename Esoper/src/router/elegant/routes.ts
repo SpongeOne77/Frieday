@@ -60,7 +60,7 @@ export const generatedRoutes: GeneratedRoute[] = [
       i18nKey: 'route.function',
       icon: 'icon-park-outline:all-application',
       order: 6,
-      hideInMenu: true
+      hideInMenu: false
     },
     children: [
       {
@@ -82,7 +82,7 @@ export const generatedRoutes: GeneratedRoute[] = [
               title: 'function_hide-child_one',
               i18nKey: 'route.function_hide-child_one',
               icon: 'material-symbols:filter-list-off',
-              hideInMenu: true,
+              hideInMenu: false,
               activeMenu: 'function_hide-child'
             }
           },
@@ -93,7 +93,7 @@ export const generatedRoutes: GeneratedRoute[] = [
             meta: {
               title: 'function_hide-child_three',
               i18nKey: 'route.function_hide-child_three',
-              hideInMenu: true,
+              hideInMenu: false,
               activeMenu: 'function_hide-child'
             }
           },
@@ -104,7 +104,7 @@ export const generatedRoutes: GeneratedRoute[] = [
             meta: {
               title: 'function_hide-child_two',
               i18nKey: 'route.function_hide-child_two',
-              hideInMenu: true,
+              hideInMenu: false,
               activeMenu: 'function_hide-child'
             }
           }
@@ -119,7 +119,7 @@ export const generatedRoutes: GeneratedRoute[] = [
           i18nKey: 'route.function_multi-tab',
           icon: 'ic:round-tab',
           multiTab: true,
-          hideInMenu: true,
+          hideInMenu: false,
           activeMenu: 'function_tab'
         }
       },
@@ -216,7 +216,7 @@ export const generatedRoutes: GeneratedRoute[] = [
       icon: 'carbon:cloud-service-management',
       order: 9,
       roles: ['R_ADMIN'],
-      hideInMenu: true
+      hideInMenu: false
     },
     children: [
       {
@@ -229,7 +229,7 @@ export const generatedRoutes: GeneratedRoute[] = [
           icon: 'material-symbols:route',
           order: 3,
           roles: ['R_ADMIN'],
-          keepAlive: true
+          keepAlive: false
         }
       },
       {
@@ -264,7 +264,7 @@ export const generatedRoutes: GeneratedRoute[] = [
         meta: {
           title: 'manage_user-detail',
           i18nKey: 'route.manage_user-detail',
-          hideInMenu: true,
+          hideInMenu: false,
           roles: ['R_ADMIN'],
           activeMenu: 'manage_user'
         }
@@ -380,7 +380,7 @@ export const generatedRoutes: GeneratedRoute[] = [
     meta: {
       title: 'user-center',
       i18nKey: 'route.user-center',
-      hideInMenu: true
+      hideInMenu: false
     }
   }
 ];
