@@ -10,8 +10,8 @@ import {useNotification} from 'naive-ui'
 // const serverAddress = '192.168.8.43:9100'
 const serverAddress = '150.158.148.22'
 // const serverAddress = '192.168.0.38'
-const qStation = true;
-// const qStation = false;
+// const qStation = ref(true);
+const qStation = ref(false);
 const urls = ref([]);
 
 
@@ -31,7 +31,7 @@ const {createWebsocket, connectionStatus} = customWebSocket({
       urls.value = [trama];
     } else {
       console.log(JSON.parse(data))
-      notify('成功获取指导书，加载中')
+      notify('成功获取指导书，加载中', 'info')
       let pics = [];
       JSON.parse(data).forEach((item) => {
         pics.push(`http://${serverAddress}/esop/${item}`);
@@ -66,15 +66,19 @@ const isDisplayLogo = computed(() => {
   return urls.value.length === 0
 })
 
+const isNormalStation = computed(() => {
+  return qStation.value === false;
+})
+
 
 </script>
 
 <template>
   <logo-only v-if="isDisplayLogo"></logo-only>
-  <n-carousel v-if="!isDisplayLogo" :autoplay="qStation === false" touchable :show-dots="false">
-    <img style="object-fit: fill" v-if="qStation === false" v-for="item in urls" :key="item" :src="item"
+  <n-carousel v-if="!isDisplayLogo" :autoplay="isNormalStation" touchable :interval="7000" :show-dots="false">
+    <img style="object-fit: fill" v-if="isNormalStation" v-for="item in urls" :key="item" :src="item"
          alt=""/>
-    <n-image v-if="qStation === true" object-fit="fill" width="1920" height="1000" v-for="(item, index) in urls" :key="item + index"
+    <n-image v-if="!isNormalStation" object-fit="fill" width="1920" height="1000" v-for="(item, index) in urls" :key="item + index"
              :src="item"/>
   </n-carousel>
 </template>
