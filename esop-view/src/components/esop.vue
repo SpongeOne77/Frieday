@@ -8,10 +8,10 @@ import LogoOnly from "./logoOnly.vue";
 import {useNotification} from 'naive-ui'
 
 // const serverAddress = '192.168.8.43:9100'
-const serverAddress = '150.158.148.22'
-// const serverAddress = '192.168.0.38'
-// const qStation = ref(true);
-const qStation = ref(false);
+// const serverAddress = '150.158.148.22'
+const serverAddress = '192.168.0.38'
+const qStation = ref(true);
+// const qStation = ref(false);
 const urls = ref([]);
 
 

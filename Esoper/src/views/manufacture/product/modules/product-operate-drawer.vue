@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import { computed, reactive, ref, watch } from 'vue';
 import type { UploadFileInfo, UploadInst } from 'naive-ui';
-import axios from 'axios';
 import { useFormRules, useNaiveForm } from '@/hooks/common/form';
 import { $t } from '@/locales';
 import { upload } from '@/service/api';
+
+const { VITE_SERVICE_PHOTO_URL } = import.meta.env;
 
 defineOptions({
   name: 'ProductOperateDrawer'
@@ -108,11 +109,7 @@ const handleClick = () => {
   uploadRef.value?.submit();
 };
 
-const uploadRequest = ({
-  file,
-  data,
-  onProgress
-}: UploadCustomRequestOptions) => {
+const uploadRequest = ({ file, data, onProgress }: UploadCustomRequestOptions) => {
   const formData = new FormData();
   if (data) {
     Object.keys(data).forEach(key => {
@@ -162,10 +159,15 @@ watch(visible, () => {
           />
         </NFormItem>
         <NFormItem :label="$t('page.manufacture.product.fileIds')" path="fileIds">
-          <div v-if="operateType === 'edit'">已上传 {{ fileListLength }}
+          <div v-if="operateType === 'edit'">
+            已上传 {{ fileListLength }}
             <NImageGroup show-toolbar-tooltip>
               <NSpace>
-                <NImage v-for="item in model.files" :key="item.fileNewName" width="100" :src="`http://150.158.148.22/esop/${item.fileNewName}`"></NImage>
+                <div v-for="item in model.files" :key="item.fileNewName">
+                  {{ item.fileName }}
+                  <NImage lazy width="100" :src="`${VITE_SERVICE_PHOTO_URL}/${item.fileNewName}`"></NImage>
+                </div>
+
               </NSpace>
             </NImageGroup>
           </div>
